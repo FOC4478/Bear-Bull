@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="support.css">
+</head>
+<body>
+    <div class="navbar">
+           <img src="c:\Users\user\Desktop\Broker\images\logo1.png">
+           <div class="hambuger">&#9776;</div>
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="plan.html">PLANS</a></li>
+                <li><a href="blog.html">BLOG</a></li>
+                <li><a href="community.html">COMMMUNITY</a></li>
+                <li><a href="signup.html">REGISTER</a></li>
+                <li><a href="login.html">LOGIN</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="support.html">SUPPORT</a></li>
+                <li><a href="userdash.html">DASHBOARD</a></li>
+            </ul>
+        </div>
+        
+
+  <header class="support-header">
+    <h1>How can we help you?</h1>
+    <p>Our team is here to assist you 24/7</p>
+  </header>
+
+  <main class="support-container">
+    <!-- Support Form -->
+    <section class="support-form">
+      <h2>Send a Message</h2>
+      <form id="supportForm">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Type your message here..." required></textarea>
+        <button type="submit">Send</button>
+      </form>
+      <p id="form-status"></p>
+    </section>
+
+    <!-- Live Chat -->
+    <section class="live-chat">
+      <h2>Live Support Chat</h2>
+      <div class="chat-box" id="chatBox">
+        <div class="chat-message bot">👋 Hi! How can we assist you today?</div>
+      </div>
+      <form id="chatForm">
+        <input type="text" id="chatInput" placeholder="Type a message..." required />
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+    <script src="support.js"></script>
+</body>
+</html>

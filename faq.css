@@ -1,0 +1,263 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background: #f7f9fa;
+    padding: 15px 20px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.navbar .nav-links {
+    @media screen and  (max-width: 900px) {
+        display: none;
+        flex-direction: column;
+        background: #111;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 300px;
+        height: 500px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        text-align: center;
+         transform: translateY(-20px) scale(0.95);
+        transition: all 0.4s ease;
+        z-index: 99;
+    }
+}
+
+ .nav-links.active {
+    display: flex;
+}
+
+.nav-links.show {
+  @media screen and (max-width: 768px) {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.navbar img {
+    width: 250px;
+    height: 9vh;
+    padding-left: 30px;
+    margin-top: 20px;
+}
+
+/* .navbar img {
+    margin-top: 20px;
+} */
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin-top: 40px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+
+     @media screen and  (max-width: 900px) {
+        color: white;
+        font-size: 30px;
+}
+}
+
+.hambuger {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+
+    @media screen and (max-width: 900px) {
+        display: block;
+    }
+}
+
+/* faq section */
+.faq-section {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.faq-section h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.faq-item {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  overflow: hidden;
+}
+
+.faq-question {
+  background: #e9ecef;
+  width: 100%;
+  padding: 15px;
+  font-weight: bold;
+  border: none;
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.faq-question:hover {
+  background: #dee2e6;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  background: #fff;
+  color: #333;
+  padding: 0 15px;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+
+.faq-answer.open {
+  padding: 15px;
+  max-height: 300px;
+}
+
+.faq-footer {
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 14px;
+}
+
+.faq-footer a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+/* footer */
+.footer {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 40px 20px 30px;
+
+     @media screen and (max-width: 780px){
+       padding: 50px 15px;
+}
+    }
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+
+}
+
+.footer-logo img {
+    width: 150px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 60px;
+
+    @media screen and (max-width: 780px){
+    gap: 20px;
+}
+}
+
+.footer-column {
+    min-width: 150px;
+} 
+
+.footer-column h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    text-align: center;
+
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+
+.footer-column ul li a {
+color: #cccccc;
+text-decoration: none;
+font-size: 14px;
+margin-left: 30px;
+
+@media screen and (max-width: 450px) {
+    padding-right: 30px;
+}
+}
+
+.footer-column ul li a:hover {
+    color: #00c2cb;
+}
+
+.footer-buttom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.footer-buttom p {
+    font-size: 14px;
+    color: #aaaaaa;
+}
+
+.footer-socials a img {
+    width: 24px;
+    margin: 0 10px;
+    filter: brightness(0) invert(1);
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  /* background: linear-gradient(to right, #f2f6fa, #e4f0ff); */
+  color: #333;
+  animation: fadeInBody 1.2s ease-in;
+}
+
+@keyframes fadeInBody {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+@keyframes slideInDown {
+  0% { transform: translateY(-100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    
+
+  <!-- <script>
+    if (localStorage.getItem("isAdmin") !== "true") {
+      window.location.href = "admin-login.html";
+    }
+  </script> -->
+
+  <!-- Navigation -->
+  <nav class="admin-nav">
+    <div class="admin-logo">Broker Admin</div>
+    <ul class="admin-links">
+      <li><a href="admin.html" class="active">Dashboard</a></li>
+       <li><a href="admin_signup.html" class="active">Register</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Top Summary Cards -->
+  <section class="summary-section">
+    <div class="admin-card">
+      <h3>Total Users</h3>
+      <p id="total-users">0</p>
+    </div>
+    <div class="admin-card">
+      <h3>Total Deposits</h3>
+      <p id="total-deposits">$0</p>
+    </div>
+    <div class="admin-card">
+      <h3>Total Profits Paid</h3>
+      <p id="total-profits">$0</p>
+    </div>
+    <div class="admin-card">
+      <h3>Active Plans</h3>
+      <p id="active-plans">0</p>
+    </div>
+  </section>
+
+  <!-- User Table -->
+  <section class="table-section">
+    <h2>All Users</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Plan</th>
+          <th>Deposit</th>
+        </tr>
+      </thead>
+      <tbody id="user-table-body">
+        <!-- JS will populate -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Transaction Table -->
+  <section class="table-section">
+    <h2>Recent Transactions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="transaction-table-body">
+        <!-- JS will populate -->
+      </tbody>
+    </table>
+  </section>
+
+  <script src="admin.js"></script>
+</body>
+</html>
+
+

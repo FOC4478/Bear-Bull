@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background: #f7f9fa;
+    padding: 15px 20px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.navbar .nav-links {
+    @media screen and  (max-width: 900px) {
+        display: none;
+        flex-direction: column;
+        background: #111;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 300px;
+        height: 500px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        text-align: center;
+         transform: translateY(-20px) scale(0.95);
+        transition: all 0.4s ease;
+        z-index: 99;
+    }
+}
+
+ .nav-links.active {
+    display: flex;
+}
+
+.nav-links.show {
+  @media screen and (max-width: 768px) {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.navbar img {
+    width: 250px;
+    height: 9vh;
+    padding-left: 30px;
+    margin-top: 20px;
+}
+
+/* .navbar img {
+    margin-top: 20px;
+} */
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin-top: 40px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+
+     @media screen and  (max-width: 900px) {
+        color: white;
+        font-size: 20px;
+}
+}
+
+.hambuger {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+
+    @media screen and (max-width: 900px) {
+        display: block;
+    }
+}
+
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.blog-header {
+  background: linear-gradient(to right, #0f172a, #1e293b);
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.blog-header h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+.blog-header p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #ccc;
+}
+
+.blog-content {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.blog-article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease-out;
+}
+
+.blog-article h2 {
+  color: #1e293b;
+}
+
+.blog-article img {
+  width: 100%;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.blog-article .date {
+  font-size: 14px;
+  color: #888;
+}
+
+.blog-footer {
+  text-align: center;
+  padding: 20px;
+  background: #f1f3f6;
+  font-size: 14px;
+  color: #777;
+}
+
+/* Animation trigger */
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .blog-article {
+    padding: 20px;
+  }
+
+  .blog-header h1 {
+    font-size: 28px;
+  }
+}
+
+
+/* footer */
+.footer {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 40px 20px 30px;
+
+     @media screen and (max-width: 780px){
+       padding: 50px 15px;
+}
+    }
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+
+}
+
+.footer-logo img {
+    width: 150px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 60px;
+
+    @media screen and (max-width: 780px){
+    gap: 20px;
+}
+}
+
+.footer-column {
+    min-width: 150px;
+} 
+
+.footer-column h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    text-align: center;
+
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+
+.footer-column ul li a {
+color: #cccccc;
+text-decoration: none;
+font-size: 14px;
+margin-left: 30px;
+
+@media screen and (max-width: 450px) {
+    padding-right: 30px;
+}
+}
+
+.footer-column ul li a:hover {
+    color: #00c2cb;
+}
+
+.footer-buttom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.footer-buttom p {
+    font-size: 14px;
+    color: #aaaaaa;
+}
+
+.footer-socials a img {
+    width: 24px;
+    margin: 0 10px;
+    filter: brightness(0) invert(1);
+}
+
