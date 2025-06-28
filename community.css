@@ -107,15 +107,6 @@ body {
   }
 }
 
-.hambuger {
-    display: none;
-    font-size: 26px;
-    cursor: pointer;
-
-    @media screen and (max-width: 900px) {
-        display: block;
-    }
-}
 
 /* communite section */
 /* Hero Section */

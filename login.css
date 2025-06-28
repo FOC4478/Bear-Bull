@@ -82,7 +82,7 @@ body {
     right: 0;
     width: 100%;
     display: none;
-    padding: 20px 0;
+    padding: 20px 10px;
     animation: slideDown 0.4s ease forwards;
     z-index: 1000;
   }
@@ -115,7 +115,7 @@ body {
       justify-content: center;
       padding: 60px 20px;
       animation: fadeIn 1s ease-in-out;
-      background-image: url('c:/Users/user/Desktop/Broker/images/logo10.png');
+      background-image: url('images/logo10.png');
       background-size: cover;
       /* background: linear-gradient(to right, #00C2CB, #f1f4f8); */
     }

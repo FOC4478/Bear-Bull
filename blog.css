@@ -80,9 +80,10 @@ body {
     position: absolute;
     top: 60px;
     right: 0;
+    left: -19px;
     width: 100%;
     display: none;
-    padding: 20px 0;
+    padding: 20px 10px;
     animation: slideDown 0.4s ease forwards;
     z-index: 1000;
   }
@@ -94,6 +95,7 @@ body {
   .hamburger {
     display: flex;
   }
+
 }
 
 @keyframes slideDown {
@@ -118,7 +120,7 @@ body {
   background: linear-gradient(to right, #0f172a, #1e293b);
   color: #fff;
   text-align: center;
-  padding: 50px 20px;
+  padding: 50px 20px; 
 }
 
 .blog-header h1 {
