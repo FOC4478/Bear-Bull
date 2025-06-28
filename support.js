@@ -1,4 +1,13 @@
-// Handle Support Form
+ const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('active');
+  });
+
+
+  // Handle Support Form
 document.getElementById("supportForm").addEventListener("submit", function (e) {
   e.preventDefault();
   document.getElementById("form-status").textContent = "✅ Message sent! We'll respond shortly.";
@@ -34,11 +43,4 @@ chatForm.addEventListener("submit", function (e) {
     chatBox.scrollTop = chatBox.scrollHeight;
   }, 1200);
 
-
-const hamburger = document.querySelector('.hambuger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-})
 });

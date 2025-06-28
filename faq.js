@@ -1,4 +1,12 @@
-const faqQuestions = document.querySelectorAll('.faq-question');
+   const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('active');
+  });
+
+    const faqQuestions = document.querySelectorAll('.faq-question');
 
 faqQuestions.forEach(question => {
   question.addEventListener('click', () => {
@@ -8,24 +16,6 @@ faqQuestions.forEach(question => {
     answer.classList.toggle('open');
     arrow.classList.toggle('rotate');
 
-    const hamburger = document.querySelector('.hambuger');
-const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
   });
 });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-  

@@ -11,10 +11,11 @@ window.addEventListener("scroll", () => {
 });
 
 
-// hamburger menu tools
-const hamburger = document.querySelector('.hambuger');
-const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', () => {
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
     navLinks.classList.toggle('active');
-});
+  });

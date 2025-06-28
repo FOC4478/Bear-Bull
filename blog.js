@@ -1,3 +1,14 @@
+const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('active');
+  });
+
+
+
+
 // Scroll animation for fade-in effect
 const fadeInElements = document.querySelectorAll('.fade-in');
 
@@ -13,10 +24,5 @@ const observer = new IntersectionObserver((entries) => {
 
 fadeInElements.forEach(el => observer.observe(el));
 
-const hamburger = document.querySelector('.hambuger');
-const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
 

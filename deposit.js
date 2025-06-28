@@ -1,3 +1,13 @@
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('active');
+  });
+
+
+
 // Plan Definitions
 const plans = {
   premium: { name: "Premium", roi: "6%", min: 500, max: 500000 },
@@ -33,9 +43,11 @@ if (plan) {
 // Show wallet address
 cryptoSelect.addEventListener("change", () => {
   const wallets = {
-    btc: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
-    eth: "0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D",
-    usdt: "TV6jCz2ZLr8LBuPZrbC4zEo5WrFz1fTfGf"
+    btc: "bc1qleweftdwz2v5gf4rurtm528p7x8du5suplawgw",
+    eth: "0xc532cfa04da7e4128581e692942fce141199ade6",
+    usdt: "0xc532cfa04da7e4128581e692942fce141199ade6",
+    erc20: "0xc532cfa04da7e4128581e692942fce141199ade6",
+    xrp:   "bnb1z52p6sfk905vepmvtpc54le8cwrq3mgn32yv3z",
   };
   const selected = cryptoSelect.value;
   if (wallets[selected]) {
@@ -77,12 +89,4 @@ form.addEventListener("submit", (e) => {
   setTimeout(() => {
     window.location.href = "dashboard.html";
     }, 2000);
-});
-
-// hamburger
-const hamburger = document.querySelector('.hambuger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
 });
