@@ -43,11 +43,13 @@ if (plan) {
 // Show wallet address
 cryptoSelect.addEventListener("change", () => {
   const wallets = {
-    btc: "bc1qleweftdwz2v5gf4rurtm528p7x8du5suplawgw",
-    eth: "0xc532cfa04da7e4128581e692942fce141199ade6",
-    usdt: "0xc532cfa04da7e4128581e692942fce141199ade6",
-    erc20: "0xc532cfa04da7e4128581e692942fce141199ade6",
-    xrp:   "bnb1z52p6sfk905vepmvtpc54le8cwrq3mgn32yv3z",
+    BTC: "bc1q36hewvpuu66x2kmc3su54zka4lsrjgylev4lne",
+    ETH: "0x956132fbDA9daeE7C3fa2d546e31879a994626E9",
+    LTC: "LVRegzK2J2naf6nHmMz9UuEAKpufvKkZ3u",
+    BNB: "0x956132fbDA9daeE7C3fa2d546e31879a994626E9",
+    BCH:  "qqae4nh3luq838qvdq7tys587ha7jsuguym6a6kusc",
+    TRX: "TKmdbJ9z3ggQueNDdLm8u1daNMUvEHojKL",
+    ERC20: "0x956132fbDA9daeE7C3fa2d546e31879a994626E9",
   };
   const selected = cryptoSelect.value;
   if (wallets[selected]) {

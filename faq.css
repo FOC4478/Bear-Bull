@@ -80,6 +80,7 @@ body {
     position: absolute;
     top: 60px;
     right: 0;
+    padding-left: 20px;
     width: 100%;
     display: none;
     padding: 20px 10px;

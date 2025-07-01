@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LOGIN</title>
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
@@ -60,10 +60,13 @@
             <p id="plan-price" class="price-label">Please enter your details below to get started.</p>
 
             <form id="log-in-form">
-                <input type="email" placeholder="Email Address" required>
-                <input type="password" placeholder="Create Password" required>
-                <a href="dashboard.html"><button type="submit">Login</button></a>
+                <input type="email" id="email" placeholder="Email Address" required>
+                <input type="password" id="password" placeholder="Create Password" required>
+                <a href="userdash.html"><button type="submit">Login</button></a>
             </form>
+            <p class="forgot-password-link">
+           <a href="forgot-password.html">Forgot your password?</a>
+            </p>
             <p class="success-message" id="success-message"></p>
             <div class="login-prompt">
                 Don't have an account? <a href="signup.html">Sign Up</a>
