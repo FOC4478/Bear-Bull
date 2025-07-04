@@ -33,8 +33,41 @@
     
 
 <!-- deposit section -->
+ <div class="deposit-section">
+    <h1 id="plan-title">Make a Deposit</h1>
+    <p id="plan-details">Please select your cryptocurrency and provide transaction details.</p>
 
-  <div class="deposit-section">
+    <form id="deposit-form">
+      <label for="crypto">Choose Cryptocurrency:</label>
+      <select id="crypto" required>
+        <option value="">-- Select --</option>
+        <option value="btc">Bitcoin (BTC)</option>
+        <option value="eth">Ethereum (ETH)</option>
+        <option value="usdt">Tether (USDT)</option>
+        <option value="bnb">Build and Build (BNB)</option>
+        <option value="bch">Bitcoin Cash (BCH)</option>
+        <option value="trx">USDT TRC-20 (TRX)</option>
+        <option value="erc20">USDT ERC-20 (ETH)</option>
+      </select>
+
+      <div id="wallet-display" class="hidden">
+        <p>Send payment to the address below:</p>
+        <input type="text" id="wallet-address" readonly />
+        <button type="button" onclick="copyAddress()">Copy Address</button>
+      </div>
+
+      <label for="amount">Amount Sent (USD):</label>
+      <input type="number" id="amount" required min="1" />
+
+      <label for="txn">Transaction Hash:</label>
+      <input type="text" id="txn" required placeholder="Paste TXID here" />
+
+      <button type="submit">I Have Paid</button>
+      <p id="status-message"></p>
+    </form>
+  </div>
+
+  <!-- <div class="deposit-section">
     <h1 id="plan-title">Loading...</h1>
     <p id="plan-details"></p>
 
@@ -66,7 +99,7 @@
       <button type="submit">I Have Paid</button>
       <p id="status-message"></p>
     </form>
-  </div>
+  </div> -->
 
   <script src="deposit.js"></script>
 </body>
