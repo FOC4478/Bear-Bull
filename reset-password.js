@@ -7,17 +7,19 @@ document.getElementById("reset-form").addEventListener("submit", async (e) => {
   const message = document.getElementById("message");
 
   try {
-    const response = await fetch("http://localhost:3000/api/auth/reset-password", {
+    const response = await fetch("resetpassword.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, code, newPassword }),
+      body: JSON.stringify({ email, code, new_password: newPassword }),
     });
 
     const data = await response.json();
+    console.log(data);
 
-    if (response.ok) {
+    if (data.success == true) {
       message.textContent = "Password reset successful. You can now log in.";
       message.style.color = "green";
+      window.location.href = 'login.html';
     } else {
       message.textContent = data.message || "Reset failed. Check your details.";
       message.style.color = "red";

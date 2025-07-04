@@ -23,12 +23,12 @@ const hamburger = document.getElementById('hamburger');
     const plan = document.getElementById("selected-plan").value;
 
     try {
-      const res = await fetch("http://localhost:3000/api/auth/signup", {
+      const res = await fetch("signup.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ full_name, email, password, plan }),
+        body: JSON.stringify({ full_name, email, password }),
       });
 
       // Log the raw fetch response
