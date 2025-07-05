@@ -5,6 +5,7 @@ const hamburger = document.getElementById('hamburger');
     hamburger.classList.toggle('open');
     navLinks.classList.toggle('active');
   });
+<<<<<<< HEAD
 
   document.addEventListener("DOMContentLoaded", () => {
   // ✅ Get selected plan from URL or default to "silver"
@@ -69,3 +70,5 @@ const hamburger = document.getElementById('hamburger');
     }
   });
 });
+=======
+>>>>>>> 9965c3c51ed713ed3bc77c0546920767c508f1c6

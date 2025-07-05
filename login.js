@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 const hamburger = document.getElementById("hamburger");
 const navLinks = document.getElementById("nav-links");
+=======
+ const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+>>>>>>> 9965c3c51ed713ed3bc77c0546920767c508f1c6
 
 hamburger.addEventListener("click", () => {
   hamburger.classList.toggle("open");
   navLinks.classList.toggle("active");
 });
 
+<<<<<<< HEAD
 // login from submission
 document.getElementById("log-in-form").addEventListener("submit", async (e) => {
   e.preventDefault(); // Prevent form from reloading the page
@@ -37,3 +43,5 @@ document.getElementById("log-in-form").addEventListener("submit", async (e) => {
     alert("Something went wrong. Please try again.");
   }
 });
+=======
+>>>>>>> 9965c3c51ed713ed3bc77c0546920767c508f1c6

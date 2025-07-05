@@ -63,7 +63,7 @@ if ($password !== $storedPassword) {
 
 session_start();
 $_SESSION['user_id'] = $id;
-$_SESSION['full_name'] = $full_name;
+$_SESSION['user_email'] = $email;
 
 // Return user data
 echo json_encode([

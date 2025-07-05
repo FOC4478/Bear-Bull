@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 document.getElementById("reset-form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -30,3 +31,5 @@ document.getElementById("reset-form").addEventListener("submit", async (e) => {
     message.style.color = "red";
   }
 });
+=======
+>>>>>>> 9965c3c51ed713ed3bc77c0546920767c508f1c6

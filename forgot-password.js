@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 document.getElementById('forgot-password-form').addEventListener('submit', async function(e) {
   e.preventDefault();
 
@@ -28,3 +29,5 @@ document.getElementById('forgot-password-form').addEventListener('submit', async
     message.style.color = 'red';
   }
 });
+=======
+>>>>>>> 9965c3c51ed713ed3bc77c0546920767c508f1c6
