@@ -20,10 +20,10 @@ const plans = {
 };
 
 // Validate
-// if (!selectedPlan || !plans[selectedPlan] || !depositAmount) {
-//   alert("Missing investment details. Please start from the Plan page.");
-//   window.location.href = "plan.html";
-// }
+if (!selectedPlan || !plans[selectedPlan] || !depositAmount) {
+  alert("Missing investment details. Please start from the Plan page.");
+  window.location.href = "plan.html";
+}
 
 // Get plan info
 const plan = plans[selectedPlan];
