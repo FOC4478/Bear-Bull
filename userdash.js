@@ -7,56 +7,94 @@ hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// Get stored plan and deposit
-const selectedPlan = localStorage.getItem("selectedPlan"); // e.g. 'premium'
-const depositAmount = parseFloat(localStorage.getItem("depositAmount") || 0);
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get("userId");
 
-// Plan ROI mapping
-const plans = {
-  premium: { name: "Premium", roi: 6 },
-  silver: { name: "Silver", roi: 7 },
-  gold: { name: "Gold", roi: 8 },
-  platinum: { name: "Platinum", roi: 10 }
-};
-
-// Validate
-if (!selectedPlan || !plans[selectedPlan] || !depositAmount) {
-  alert("Missing investment details. Please start from the Plan page.");
-  window.location.href = "plan.html";
+if (!userId) {
+  alert("Missing user ID. Please login again.");
+  window.location.href = "login.html";
 }
 
-// Get plan info
-const plan = plans[selectedPlan];
-const roiRate = plan.roi;
-const profitPerDay = parseFloat((depositAmount * roiRate / 100).toFixed(2));
-const totalROI = parseFloat((profitPerDay * 24).toFixed(2));
+fetch(`getUserROI.php?userId=${userId}`)
+  .then(res => res.json())
+  .then(data => {
+    if (!data.success) {
+      throw new Error(data.message || "Failed to fetch ROI");
+    }
 
-// Update DOM with animations
-document.getElementById("user-plan").textContent = plan.name;
-animateValue("deposit-amount", depositAmount);
-animateValue("daily-profit", profitPerDay);
-animateValue("total-roi", totalROI);
+    const { plan, deposit, roiRate, currentDay, transactions } = data;
 
-// Transaction History (static example for now)
-const transactionHistory = [
-  { date: "2025-06-26", type: "Deposit", amount: depositAmount },
-  { date: "2025-06-27", type: "Profit", amount: profitPerDay }
-];
+    const profitPerDay = parseFloat((deposit * roiRate / 100).toFixed(2));
+    const totalROI = parseFloat((profitPerDay * 24).toFixed(2));
 
-const tbody = document.querySelector(".transaction-history tbody");
-tbody.innerHTML = ""; // Clear any previous rows
+    // Update values with animation
+    document.getElementById("user-plan").textContent = plan;
+    animateValue("deposit-amount", deposit);
+    animateValue("daily-profit", profitPerDay);
+    animateValue("total-roi", totalROI);
 
-transactionHistory.forEach(tx => {
-  const row = document.createElement("tr");
-  row.innerHTML = `
-    <td>${tx.date}</td>
-    <td>${tx.type}</td>
-    <td>$${tx.amount.toFixed(2)}</td>
-  `;
-  tbody.appendChild(row);
-});
+    // Update progress bar
+    const roiProgress = document.getElementById("roi-progress");
+    const percent = (currentDay / 24) * 100;
+    roiProgress.style.width = `${percent}%`;
 
-// ========= Animated Counter Function =========
+    // Update chart
+    const days = Array.from({ length: 24 }, (_, i) => `Day ${i + 1}`);
+    let cumulative = 0;
+    const roiData = days.map((_, i) => {
+      cumulative += (deposit * roiRate / 100);
+      return parseFloat(cumulative.toFixed(2));
+    });
+
+    const ctx = document.getElementById("roiChart").getContext("2d");
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: days,
+        datasets: [{
+          label: 'ROI Growth ($)',
+          data: roiData,
+          borderColor: '#4caf50',
+          backgroundColor: 'rgba(76, 175, 80, 0.2)',
+          tension: 0.3,
+          fill: true,
+          pointRadius: 3,
+          pointHoverRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        animation: {
+          duration: 1000
+        },
+        scales: {
+          y: { beginAtZero: true },
+          x: { title: { display: true, text: 'Days' } }
+        }
+      }
+    });
+
+    // Render transaction history
+    const tbody = document.querySelector(".transaction-history tbody");
+    tbody.innerHTML = "";
+    transactions.forEach(tx => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${tx.date}</td>
+        <td>${tx.type}</td>
+        <td>$${parseFloat(tx.amount).toFixed(2)}</td>
+      `;
+      tbody.appendChild(row);
+    });
+
+  })
+  .catch(err => {
+    alert("Error loading dashboard.");
+    console.error(err);
+    window.location.href = "login.html";
+  });
+
+// Animation Function
 function animateValue(id, endValue, duration = 1500) {
   const el = document.getElementById(id);
   let start = 0;
@@ -72,59 +110,3 @@ function animateValue(id, endValue, duration = 1500) {
   };
   step();
 }
-
-// ========= Progress Bar Animation =========
-const roiProgress = document.getElementById("roi-progress");
-const currentDay = 1; // You can make this dynamic later
-const roiPercent = (currentDay / 24) * 100;
-roiProgress.style.width = `${roiPercent}%`;
-
-// ========= ROI Chart =========
-const roiChartCtx = document.getElementById("roiChart").getContext("2d");
-
-const days = Array.from({ length: 24 }, (_, i) => `Day ${i + 1}`);
-
-let cumulativeROI = 0;
-const roiData = days.map(() => {
-  cumulativeROI += (depositAmount * roiRate / 100);
-  return parseFloat(cumulativeROI.toFixed(2));
-});
-
-const roiChart = new Chart(roiChartCtx, {
-  type: 'line',
-  data: {
-    labels: days,
-    datasets: [{
-      label: 'ROI Growth ($)',
-      data: roiData,
-      borderColor: '#4caf50',
-      backgroundColor: 'rgba(76, 175, 80, 0.2)',
-      tension: 0.3,
-      fill: true,
-      pointRadius: 3,
-      pointHoverRadius: 6,
-    }]
-  },
-  options: {
-    responsive: true,
-    animation: {
-      duration: 1500,
-      easing: 'easeOutQuart'
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: "Profit ($)"
-        }
-      },
-      x: {
-        title: {
-          display: true,
-          text: "Days"
-        }
-      }
-    }
-  }
-});
