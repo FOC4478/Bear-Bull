@@ -78,3 +78,31 @@ function copyAddress() {
     .catch(err => alert("Failed to copy address: " + err));
 }
 
+// Handle Deposit Form Submission
+// ========================
+depositForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const crypto = depositCryptoSelect.value;
+  const wallet = depositWalletInput.value;
+  const amount = document.getElementById("amount").value;
+  const txn = document.getElementById("txn").value;
+
+  if (!crypto  || !wallet || !amount || !txn) {
+    depositStatusMsg.textContent = "Please fill in all fields.";
+    depositStatusMsg.style.color = "red";
+    return;
+  }
+
+  // Save to localStorage
+  localStorage.setItem("depositAmount", amount);
+  localStorage.setItem("selectedPlan", planKey);
+
+  depositStatusMsg.textContent = "Deposit submitted successfully!";
+  depositStatusMsg.style.color = "green";
+
+  // Optional delay before redirecting
+  setTimeout(() => {
+    window.location.href = "userdash.html";
+  }, 3000);
+});
