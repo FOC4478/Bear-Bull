@@ -44,3 +44,33 @@ chatForm.addEventListener("submit", function (e) {
   }, 1200);
 
 });
+
+document.getElementById("supportForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("support-name").value.trim();
+  const email = document.getElementById("support-email").value.trim();
+  const message = document.getElementById("support-message").value.trim();
+  const status = document.getElementById("form-status");
+
+  fetch("backend/support.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, message })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        status.textContent = "✅ Message sent successfully!";
+        status.style.color = "green";
+        document.getElementById("supportForm").reset();
+      } else {
+        status.textContent = data.message || "❌ Something went wrong.";
+        status.style.color = "red";
+      }
+    })
+    .catch(() => {
+      status.textContent = "⚠️ Server error. Please try again.";
+      status.style.color = "orange";
+    });
+});

@@ -1,19 +1,22 @@
-// Admin login functionality
-document.getElementById("admin-login-form")?.addEventListener("submit", function(e) {
+document.getElementById("admin-signup-form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const email = document.getElementById("login-email").value.trim();
-  const password = document.getElementById("login-password").value.trim();
+  const name = document.getElementById("admin-name").value;
+  const email = document.getElementById("admin-email").value;
+  const password = document.getElementById("admin-password").value;
 
-  // Basic demo login — replace with backend or Firebase later
-  const demoAdminEmail = "admin@broker.com";
-  const demoAdminPassword = "admin123";
+  const res = await fetch("php/admin_signup.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, password })
+  });
 
-  if (email === demoAdminEmail && password === demoAdminPassword) {
-    localStorage.setItem("isAdmin", "true");
-    alert("Login successful!");
-    window.location.href = "admin.html";
+  const result = await res.json();
+
+  if (result.success) {
+    alert(result.message);
+    window.location.href = "admin_login.html";
   } else {
-    alert("Invalid admin credentials.");
+    alert("Signup failed: " + result.message);
   }
 });

@@ -1,26 +1,56 @@
-// Admin login logic
-document.getElementById("admin-login-form")?.addEventListener("submit", function(e) {
-  e.preventDefault();
-  const email = document.getElementById("login-email").value;
-  const password = document.getElementById("login-password").value;
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("php/admin_dashboard.php")
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to fetch admin dashboard data.");
+      return res.json();
+    })
+    .then(data => {
+      // Summary Cards
+      document.getElementById("total-users").textContent = data.totalUsers || 0;
+      document.getElementById("total-deposits").textContent = `$${parseFloat(data.totalDeposits || 0).toFixed(2)}`;
+      document.getElementById("total-profits").textContent = `$${parseFloat(data.totalProfits || 0).toFixed(2)}`;
+      document.getElementById("active-plans").textContent = data.activePlans || 0;
 
-  // For now, simple validation — replace with real backend check
-  if (email === "admin@broker.com" && password === "admin123") {
-    localStorage.setItem("isAdmin", "true");
-    window.location.href = "admin.html";
-  } else {
-    alert("Invalid admin credentials.");
-  }
-});
+      // Populate Users Table
+      const userTable = document.getElementById("user-table-body");
+      userTable.innerHTML = "";
 
-// Admin signup logic
-document.getElementById("admin-signup-form")?.addEventListener("submit", function(e) {
-  e.preventDefault();
-  const name = document.getElementById("signup-name").value;
-  const email = document.getElementById("signup-email").value;
-  const password = document.getElementById("signup-password").value;
+      if (data.users && data.users.length > 0) {
+        data.users.forEach(user => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${user.full_name}</td>
+            <td>${user.email}</td>
+            <td>${user.plan}</td>
+            <td>$${parseFloat(user.amount).toFixed(2)}</td>
+          `;
+          userTable.appendChild(row);
+        });
+      } else {
+        userTable.innerHTML = <tr><td colspan="4">No users found.</td></tr>;
+      }
 
-  // Save to localStorage (demo purpose)
-  alert("Admin registered successfully. Please log in.");
-  window.location.href = "admin-login.html";
+      // Populate Transactions Table
+      const txTable = document.getElementById("transaction-table-body");
+      txTable.innerHTML = "";
+
+      if (data.transactions && data.transactions.length > 0) {
+        data.transactions.forEach(tx => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${tx.full_name}</td>
+            <td>${tx.type}</td>
+            <td>$${parseFloat(tx.amount).toFixed(2)}</td>
+            <td>${tx.date}</td>
+          `;
+          txTable.appendChild(row);
+        });
+      } else {
+        txTable.innerHTML = <tr><td colspan="4">No transactions found.</td></tr>;
+      }
+    })
+    .catch(err => {
+      console.error("Error loading admin dashboard:", err);
+      alert("Failed to load dashboard data. Please try again later.");
+    });
 });
