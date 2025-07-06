@@ -4,19 +4,27 @@ document.getElementById("forgot-password-form").addEventListener("submit", funct
   const email = document.getElementById("email").value.trim();
   const message = document.getElementById("message");
 
-  fetch("forgot-password.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email })
-  })
-  .then(res => res.json())
-  .then(data => {
-    message.textContent = data.message;
-    message.style.color = data.success ? "green" : "red";
-  })
-  .catch(err => {
-    console.error("Error:", err);
-    message.textContent = "An error occurred. Try again later.";
-    message.style.color = "red";
-  });
+  try {
+    const response = await fetch('mailer.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+
+    const data = await response.text();
+    console.log(data);
+
+    if (response.ok) {
+      message.textContent = 'Reset code sent to your email.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = data.message || 'Something went wrong.';
+      message.style.color = 'red';
+    }
+  }
+   catch (err) {
+    console.error('Error:', err);
+    message.textContent = 'Failed to send reset code.';
+    message.style.color = 'red';
+  }
 });
