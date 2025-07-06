@@ -80,6 +80,7 @@ function copyAddress() {
 
 // Handle Deposit Form Submission
 // ========================
+// Handle Deposit Form Submission
 depositForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -88,21 +89,45 @@ depositForm.addEventListener("submit", function (e) {
   const amount = document.getElementById("amount").value;
   const txn = document.getElementById("txn").value;
 
-  if (!crypto  || !wallet || !amount || !txn) {
+  if (!crypto || !wallet ||  !amount || !txn) {
     depositStatusMsg.textContent = "Please fill in all fields.";
     depositStatusMsg.style.color = "red";
     return;
   }
 
-  // Save to localStorage
+  // Save to localStorage (for dashboard)
   localStorage.setItem("depositAmount", amount);
   localStorage.setItem("selectedPlan", planKey);
 
-  depositStatusMsg.textContent = "Deposit submitted successfully!";
-  depositStatusMsg.style.color = "green";
+  // Send data to backend
+  fetch("deposit.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      plan: planKey,
+      crypto,
+      wallet,
+      amount,
+      txn
+    })
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.success) {
+        depositStatusMsg.textContent = "Deposit submitted successfully!";
+        depositStatusMsg.style.color = "green";
 
-  // Optional delay before redirecting
-  setTimeout(() => {
-    window.location.href = "userdash.html";
-  }, 3000);
+        setTimeout(() => {
+          window.location.href = `userdash.html?userId=${data.userId}`;
+        }, 3000);
+      } else {
+        depositStatusMsg.textContent = "Failed to submit deposit.";
+        depositStatusMsg.style.color = "red";
+      }
+    })
+    .catch((err) => {
+      depositStatusMsg.textContent = "Error connecting to server.";
+      depositStatusMsg.style.color = "red";
+      console.error(err);
+    });
 });
