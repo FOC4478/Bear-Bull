@@ -40,7 +40,7 @@ if ($conn->connect_error) {
 }
 
 // Retrieve user
-$stmt = $conn->prepare("SELECT id, full_name, password FROM users WHERE email = ?");
+$stmt = $conn->prepare("SELECT id, full_name, password, role FROM users WHERE email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $stmt->store_result();
@@ -51,7 +51,7 @@ if ($stmt->num_rows === 0) {
     exit;
 }
 
-$stmt->bind_result($id, $full_name, $storedPassword);
+$stmt->bind_result($id, $full_name, $storedPassword, $role);
 $stmt->fetch();
 
 // Verify password
@@ -64,13 +64,15 @@ if ($password !== $storedPassword) {
 session_start();
 $_SESSION['user_id'] = $id;
 $_SESSION['user_email'] = $email;
+$_SESSION['user_role'] = $role; // Store role in session
 
 // Return user data
 echo json_encode([
     "message" => "Login successful",
     "user" => [
         "id" => $id,
-        "full_name" => $full_name
+        "full_name" => $full_name,
+        "role" => $role
     ]
 ]);
 
